@@ -1,7 +1,7 @@
 import requests
 
 def previsao_tempo(cidade,chave_API):
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={cidade}&lang=pt-br&appid={chave_API}&units=metric"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={chave_API}&units=metric&lang=pt_br"
     resposta = requests.get(url)
     dados = resposta.json()
     return dados
