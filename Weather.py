@@ -37,8 +37,8 @@ try:
         previsao = previsao_tempo(cidade, chave_API)
 
         if previsao['cod'] == 200:
-                print(f'Clima atual em {cidade} é: {previsao['weather'][0]['description']}')
-                print(f'Temperatura atual de: {round(previsao['main']['temp'])}°C')
+                print(f'Clima atual em {cidade} é: {(previsao['weather'][0]['description']).title()}') #Title para sair com a string formatada
+                print(f'Temperatura atual de: {round(previsao['main']['temp'])}°C') #arredondo o numero da temperatura
         else:
             print("Cidade não encontrada!")
     elif opcoes == "2":
@@ -46,6 +46,6 @@ try:
         print(f'Clima atual em {Local()} é: {previsao['weather'][0]['description']}')
         print(f'Temperatura atual de: {round(previsao['main']['temp'])}°C')
     else:
-        print('Opção invalida, tente novamente')
+        print('Opção invalida')
 except:
     print('error')
