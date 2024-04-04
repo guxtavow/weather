@@ -1,5 +1,6 @@
 import requests
 import geocoder
+import tkinter as tk
 
 
 def previsao_tempo(cidade,chave_API):
@@ -12,6 +13,7 @@ def previsao_tempo_atual(cidadeAtual,chave_API):
     url = f"http://api.openweathermap.org/data/2.5/weather?q={cidadeAtual}&appid={chave_API}&units=metric&lang=pt_br"
     resposta = requests.get(url)
     dados = resposta.json()
+    print(dados)
     return dados
 
 def Local():
@@ -20,7 +22,6 @@ def Local():
     cidadeAtual = g.city
     return cidadeAtual
     
-
 
 opcoes = input("Opções:\n1-Escolher cidade de minha preferencia\n2-Minha cidade atual\nDigite sua opção(ATENÇÃO: Apenas digite o numero):")
 
@@ -37,15 +38,30 @@ try:
         previsao = previsao_tempo(cidade, chave_API)
 
         if previsao['cod'] == 200:
+                print()
+                print("*********************************************************")
                 print(f'Clima atual em {cidade} é: {(previsao['weather'][0]['description']).title()}') #Title para sair com a string formatada
                 print(f'Temperatura atual de: {round(previsao['main']['temp'])}°C') #arredondo o numero da temperatura
+                print(f'Sensação térmica de: {round(previsao['main']['feels_like'])}°C')
+                print(f'Com máximas de: {round(previsao['main']['temp_max'])}°C')
+                print(f'E mínimas de: {round(previsao['main']['temp_min'])}°C')
+                print("*********************************************************")
+                print()
         else:
             print("Cidade não encontrada!")
     elif opcoes == "2":
+        print()
+        print("*********************************************************")
         print(f'Sua localização é: {Local()}')
         print(f'Clima atual em {Local()} é: {previsao['weather'][0]['description']}')
         print(f'Temperatura atual de: {round(previsao['main']['temp'])}°C')
+        print(f'Sensação térmica de: {round(previsao['main']['feels_like'])}°C')
+        print(f'Com máximas de: {round(previsao['main']['temp_max'])}°C')
+        print(f'E mínimas de: {round(previsao['main']['temp_min'])}°C')
+        print("*********************************************************")
+        print()
     else:
         print('Opção invalida')
 except:
     print('error')
+    
